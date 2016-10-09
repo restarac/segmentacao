@@ -1,7 +1,7 @@
 class NumberSegmentationFilter < SegmentationFilter
 
     def with field
-        symbol = case name.lower
+        symbol = case name
             when "igual a"
                 "="
             when "menor que"

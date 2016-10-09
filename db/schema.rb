@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161009174744) do
+ActiveRecord::Schema.define(version: 20161009213950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,12 +26,29 @@ ActiveRecord::Schema.define(version: 20161009174744) do
     t.index ["state_id"], name: "index_contacts_on_state_id", using: :btree
   end
 
+  create_table "segmentation_clauses", force: :cascade do |t|
+    t.integer  "segmentation_id"
+    t.integer  "segmentation_filter_id"
+    t.string   "compare_field"
+    t.string   "compare_value"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["segmentation_filter_id"], name: "seg_filter_clause_on_filter_id_idx", using: :btree
+    t.index ["segmentation_id"], name: "seg_filter_clause_on_seg_id_idx", using: :btree
+  end
+
   create_table "segmentation_filters", force: :cascade do |t|
     t.string   "type"
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["type"], name: "index_segmentation_filters_on_type", using: :btree
+  end
+
+  create_table "segmentations", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "states", force: :cascade do |t|

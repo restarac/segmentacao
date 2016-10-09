@@ -1,7 +1,7 @@
 class TextSegmentationFilter < SegmentationFilter
 
     def with field
-        symbol = case name.lower
+        symbol = case name
             when "igual a"
                 "?"
             when "contém"

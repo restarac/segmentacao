@@ -17,7 +17,7 @@ class ContactsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create contact" do
     assert_difference('Contact.count') do
-      post contacts_url, params: { contact: { age: @contact.age, email: @contact.email, name: @contact.name, job: @contact.job, state: @contact.state } }
+      post contacts_url, params: { contact: { age: @contact.age, email: @contact.email, name: @contact.name, occupation: @contact.occupation, state_id: @contact.state_id } }
     end
 
     assert_redirected_to contact_url(Contact.last)
@@ -34,7 +34,7 @@ class ContactsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update contact" do
-    patch contact_url(@contact), params: { contact: { age: @contact.age, email: @contact.email, name: @contact.name, job: @contact.job, state: @contact.state } }
+    patch contact_url(@contact), params: { contact: { age: @contact.age, email: @contact.email, name: @contact.name, occupation: @contact.occupation, state_id: @contact.state_id } }
     assert_redirected_to contact_url(@contact)
   end
 

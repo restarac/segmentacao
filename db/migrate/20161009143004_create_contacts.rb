@@ -5,7 +5,7 @@ class CreateContacts < ActiveRecord::Migration[5.0]
       t.string :email
       t.integer :age
       t.references :state, foreign_key: true, index: true
-      t.string :job
+      t.string :occupation
 
       t.timestamps
     end

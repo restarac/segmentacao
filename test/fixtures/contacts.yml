@@ -4,12 +4,12 @@ one:
   name: MyString
   email: MyString
   age: 1
-  state: MyString
-  job: MyString
+  state: one
+  occupation: MyString
 
 two:
   name: MyString
   email: MyString
   age: 1
-  state: MyString
-  job: MyString
+  state: two
+  occupation: MyString

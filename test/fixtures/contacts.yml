@@ -1,15 +1,22 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  email: MyString
-  age: 1
+  name: Pessoa 1
+  email: email1@email.com
+  age: 25
   state: one
-  occupation: MyString
+  occupation: Atendente
 
 two:
-  name: MyString
-  email: MyString
-  age: 1
+  name: Pessoa 2
+  email: email2@email.com
+  age: 10
   state: two
-  occupation: MyString
+  occupation: Arquiteto
+
+three:
+  name: Pessoa 3
+  email: email3@email.com
+  age: 15
+  state: two
+  occupation: Engenheiro

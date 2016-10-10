@@ -1,6 +1,6 @@
 class NumberSegmentationFilter < SegmentationFilter
 
-    def with field
+    def mount_condition field
         symbol = case name
             when "igual a"
                 "="

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Segmentations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @segmentations.each do |segmentation| %>
+      <tr>
+        <td><%= segmentation.name %></td>
+        <td><%= link_to 'Show', segmentation %></td>
+        <td><%= link_to 'Edit', edit_segmentation_path(segmentation) %></td>
+        <td><%= link_to 'Destroy', segmentation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Segmentation', new_segmentation_path %>

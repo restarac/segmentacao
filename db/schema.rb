@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20161009213950) do
 
   create_table "segmentations", force: :cascade do |t|
     t.string   "name"
+    t.string   "class_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

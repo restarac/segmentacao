@@ -1,5 +1,5 @@
 class Segmentation < ApplicationRecord
-    has_many :segmentation_clause
+    has_many :segmentation_clause, dependent: :destroy
 
     def search! activerecord_class
         result = activerecord_class.constantize

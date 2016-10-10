@@ -1,0 +1,42 @@
+<%= form_for(segmentation_clause) do |f| %>
+  <% if segmentation_clause.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(segmentation_clause.errors.count, "error") %> prohibited this segmentation_clause from being saved:</h2>
+
+      <ul>
+      <% segmentation_clause.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :segmentation_id, "Segmentation Name" %>
+    <%= f.collection_select(:segmentation_id, Segmentation.all, :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :segmentation_filter_id, "Operador" %>
+    <select name="segmentation_clause[segmentation_filter_id]">
+      <% NumberSegmentationFilter.all.each do |filter| %>
+          <option value="<%= filter.id %>"><%= "Numeric - #{filter.name}" %></option>
+      <% end %>
+      <% TextSegmentationFilter.all.each do |filter| %>
+          <option value="<%= filter.id %>"><%= "Text - #{filter.name}" %></option>
+      <% end %>
+    </select>
+  </div>
+  
+  <div class="field">
+    <%= f.label :compare_field %>
+    <%= f.text_field :compare_field %>
+
+    <%= f.label :compare_value %>
+    <%= f.text_field :compare_value %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

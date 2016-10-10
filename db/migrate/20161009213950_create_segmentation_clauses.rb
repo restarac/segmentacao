@@ -1,4 +1,4 @@
-class CreateSegmentationClause < ActiveRecord::Migration[5.0]
+class CreateSegmentationClauses < ActiveRecord::Migration[5.0]
   def change
     create_table :segmentation_clauses do |t|
         t.integer :segmentation_id

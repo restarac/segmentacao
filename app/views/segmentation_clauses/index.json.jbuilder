@@ -1,0 +1,1 @@
+json.array! @segmentation_clauses, partial: 'segmentation_clauses/segmentation_clause', as: :segmentation_clause

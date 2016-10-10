@@ -1,0 +1,2 @@
+module SegmentationHelper
+end

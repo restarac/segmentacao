@@ -1,5 +1,5 @@
 class SegmentationsController < ApplicationController
-  before_action :set_segmentation, only: [:show, :edit, :update, :destroy]
+  before_action :set_segmentation, only: [:edit, :update, :destroy]
 
   # GET /segmentations
   # GET /segmentations.json
@@ -7,22 +7,14 @@ class SegmentationsController < ApplicationController
     @segmentations = Segmentation.all
   end
 
-  # GET /segmentations/1
-  # GET /segmentations/1.json
-  def show
-  end
-
-  # GET /segmentations/new
   def new
     @segmentation = Segmentation.new
   end
 
-  # GET /segmentations/1/edit
   def edit
   end
 
-  # POST /segmentations
-  # POST /segmentations.json
+  # equivalent to 'add_conditions'
   def create
     @segmentation = Segmentation.new(segmentation_params)
 
@@ -42,7 +34,7 @@ class SegmentationsController < ApplicationController
   def update
     respond_to do |format|
       if @segmentation.update(segmentation_params)
-        format.html { redirect_to @segmentation, notice: 'Segmentation was successfully updated.' }
+        format.html { flash[:notice]= 'Segmentation was successfully updated.'; render :edit }
         format.json { render :show, status: :ok, location: @segmentation }
       else
         format.html { render :edit }

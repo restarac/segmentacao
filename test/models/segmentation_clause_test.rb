@@ -13,6 +13,6 @@ class SegmentationClauseTest < ActiveSupport::TestCase
         filter = SegmentationFilter.new(type: "TextSegmentationFilter", name: "igual a")
         clause = SegmentationClause.new(segmentation_filter: filter, compare_value: 10, compare_field: "name")
         where = clause.mount_where
-        assert_equal "name like '?'", where
+        assert_equal "name like ?", where
     end
 end

@@ -1,7 +1,7 @@
 <h1>Editing Segmentation</h1>
 <div class="row">
     <div class="col-md-12">
-        <%= render layout: 'form', locals: {segmentation: @segmentation} do%>
+        <%= render 'form', segmentation: @segmentation do%>
             <%= submit_tag 'Update', class: "btn btn-info" %>
             <%= link_to 'Add conditions', new_segmentation_clause_path(@segmentation), {class: "btn btn btn-success", role: "button"}  %>
         <% end %>

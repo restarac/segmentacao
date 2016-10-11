@@ -1,5 +1,3 @@
 <h1>New Segmentation Clause</h1>
 
-<%= render 'form', segmentation_clause: @segmentation_clause %>
-
-<%= link_to 'Back', segmentation_clauses_path %>
+<%= render 'form', segmentation_clause: @segmentation_clause, segmentation_other_clauses: @segmentation_other_clauses, form_url: segmentation_clause_index_path %>

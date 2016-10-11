@@ -28,7 +28,7 @@ class SegmentationsController < ApplicationController
 
     respond_to do |format|
       if @segmentation.save
-        format.html { redirect_to @segmentation, notice: 'Segmentation was successfully created.' }
+        format.html { redirect_to new_segmentation_clause_path @segmentation }
         format.json { render :show, status: :created, location: @segmentation }
       else
         format.html { render :new }

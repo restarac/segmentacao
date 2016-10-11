@@ -1,35 +1,65 @@
-<%= form_for(segmentation_clause) do |f| %>
-  <% if segmentation_clause.errors.any? %>
+<div class="field">
+  <%= label_tag :seg_name,'Segmentation Name' %>
+  <%= text_field_tag :seg_name, @segmentation_clause.segmentation_name, disabled: true%>
+</div>
+
+
+<%= form_for @segmentation_clause, url: form_url do |f| %>
+  <% if @segmentation_clause.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(segmentation_clause.errors.count, "error") %> prohibited this segmentation_clause from being saved:</h2>
+      <h2><%= pluralize(@segmentation_clause.errors.count, "error") %> prohibited this segmentation_clause from being saved:</h2>
 
       <ul>
-      <% segmentation_clause.errors.full_messages.each do |message| %>
+      <% @segmentation_clause.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :segmentation_id, "Segmentation Name" %>
-    <%= f.collection_select(:segmentation_id, Segmentation.all, :id, :name) %>
-  </div>
-
-  <div class="field">
-    <%= f.label :segmentation_filter_id, "Operador" %>
-    <%= f.select :segmentation_filter_id, options_for_select(@filters) %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :compare_field %>
-    <%= f.text_field :compare_field %>
-
-    <%= f.label :compare_value %>
-    <%= f.text_field :compare_value %>
-  </div>
+  <table>
+    <thead>
+      <tr>
+        <td><%= f.label :compare_field %></td>
+        <td><%= f.label :segmentation_filter_id, "Operador" %></td>
+        <td><%= f.label :compare_value %></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= f.text_field :compare_field %></td>
+        <td><%= f.select :segmentation_filter_id, options_for_select(@filters) %></td>
+        <td><%= f.text_field :compare_value %></td>
+      </tr>
+    </tbody>
+  </table>
 
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+<% if @segmentation_other_clauses %>
+    <table>
+      <thead>
+        <tr>
+          <th>Segmentation</th>
+          <th>Comparison opration</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @segmentation_other_clauses.each do |segmentation_clause| %>
+          <tr>
+            <td><%= segmentation_clause.segmentation_name %> </td>
+            <td><%= segmentation_clause.readable_where %></td>
+            <td><%= link_to 'Edit', edit_segmentation_clause_path(segmentation_clause.segmentation, segmentation_clause)%></td>
+            <td><%= link_to 'Destroy', segmentation_clause_path(segmentation_clause.segmentation, segmentation_clause) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% end %>
+
+<%= link_to '<- Back to segmentation', edit_segmentation_path(segmentation_clause.segmentation) %>

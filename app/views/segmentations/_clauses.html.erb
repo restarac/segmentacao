@@ -1,0 +1,22 @@
+<% if segmentation_clauses %>
+    <table>
+      <thead>
+        <tr>
+          <th>Segmentation</th>
+          <th>Comparison opration</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% segmentation_clauses.each do |segmentation_clause| %>
+          <tr>
+            <td><%= segmentation_clause.segmentation_name %> </td>
+            <td><%= segmentation_clause.readable_where %></td>
+            <td><%= link_to 'Edit', edit_segmentation_clause_path(segmentation_clause.segmentation, segmentation_clause)%></td>
+            <td><%= link_to 'Destroy', segmentation_clause_path(segmentation_clause.segmentation, segmentation_clause) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% end %>

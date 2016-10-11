@@ -14,7 +14,6 @@
     <% @segmentations.each do |segmentation| %>
       <tr>
         <td><%= segmentation.name %></td>
-        <td><%= link_to 'Show', segmentation %></td>
         <td><%= link_to 'Edit', edit_segmentation_path(segmentation) %></td>
         <td><%= link_to 'Destroy', segmentation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

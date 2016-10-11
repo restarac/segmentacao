@@ -4,8 +4,16 @@ class SegmentationClause < ApplicationRecord
     belongs_to :segmentation, foreign_key: "segmentation_id"
     belongs_to :segmentation_filter, foreign_key: "segmentation_filter_id"
 
+    def segmentation_name
+        segmentation.name
+    end
+
     def unsecure_where
         mount_where.gsub! "\?", compare_value
+    end
+
+    def readable_where
+        "#{compare_field} #{segmentation_filter.name} #{compare_value}"
     end
 
     def mount_where

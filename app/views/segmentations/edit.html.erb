@@ -1,6 +1,22 @@
 <h1>Editing Segmentation</h1>
 
-<%= render 'form', segmentation: @segmentation %>
+<%= form_for(@segmentation) do |f| %>
 
-<%= link_to 'Show', @segmentation %> |
-<%= link_to 'Back', segmentations_path %>
+  <%= render 'form_messages', segmentation: @segmentation %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag 'Update name' %>
+  </div>
+<% end %>
+
+<%= link_to '<- Back to list', segmentations_path %>
+
+<section>
+    <h1>Conditions:</h1>
+    <%= render 'clauses', segmentation_clauses: @segmentation.segmentation_clauses %>
+<section>

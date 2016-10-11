@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
     
-  get 'segmentation_workspace/index'
-
-  get 'segmentation_workspace/run'
+  get 'segmentation_workspace', to: 'segmentation_workspace#index'
+  get 'segmentation_workspace/:id/run', to: 'segmentation_workspace#run', as: 'segmentation_workspace_run'
 
   resources :segmentations
   resources :segmentation_clauses

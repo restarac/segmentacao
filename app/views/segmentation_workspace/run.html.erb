@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Contacts filtered by '<%= @segmentation.name %>'</h1>
+
+<p>
+    This filter is using the folowing conditions
+    <ul>
+        <% for clause in @segmentation.segmentation_clause %>
+            <li> <%= clause.unsecure_where %></li>
+        <% end %>
+    </ul>
+<p>
+
+<div>
+    <%= link_to 'Edit Filter', segmentation_workspace_run_path(@segmentation) %>
+    <%= link_to 'Reload', segmentation_workspace_run_path(@segmentation) %>
+<div>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Age</th>
+      <th>State</th>
+      <th>Occupation</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contacts.each do |contact| %>
+      <tr>
+        <td><%= contact.name %></td>
+        <td><%= contact.email %></td>
+        <td><%= contact.age %></td>
+        <td><%= contact.state.initials %></td>
+        <td><%= contact.occupation %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

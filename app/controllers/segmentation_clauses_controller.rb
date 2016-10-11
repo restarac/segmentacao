@@ -15,11 +15,12 @@ class SegmentationClausesController < ApplicationController
   # GET /segmentation_clauses/new
   def new
     @segmentation_clause = SegmentationClause.new
-    @filters = Number.new
+    find_filters
   end
 
   # GET /segmentation_clauses/1/edit
   def edit
+    find_filters
   end
 
   # POST /segmentation_clauses
@@ -71,5 +72,10 @@ class SegmentationClausesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def segmentation_clause_params
       params.require(:segmentation_clause).permit(:compare_field, :compare_value, :segmentation_id, :segmentation_filter_id)
+    end
+
+    def find_filters
+      @filters = NumberSegmentationFilter.all.collect { |number| ["Number - #{number.name}", number.id] }
+      @filters += TextSegmentationFilter.all.collect { |text| ["Text - #{text.name}", text.id] }
     end
 end

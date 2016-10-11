@@ -18,14 +18,7 @@
 
   <div class="field">
     <%= f.label :segmentation_filter_id, "Operador" %>
-    <select name="segmentation_clause[segmentation_filter_id]">
-      <% NumberSegmentationFilter.all.each do |filter| %>
-          <option value="<%= filter.id %>"><%= "Numeric - #{filter.name}" %></option>
-      <% end %>
-      <% TextSegmentationFilter.all.each do |filter| %>
-          <option value="<%= filter.id %>"><%= "Text - #{filter.name}" %></option>
-      <% end %>
-    </select>
+    <%= f.select :segmentation_filter_id, options_for_select(@filters) %>
   </div>
   
   <div class="field">

@@ -19,6 +19,7 @@ How can i run localy? follow these steps
 ## Requirements
 
 - Postgres 9.4 (default instalation, next next...)
+- Ruby 2.2.4
 - Rails 5.0.1 (if you are using windows try [railsInstaller](http://railsinstaller.org/) and follow [this tutorial](http://railsapps.github.io/installing-rails.html))
 
 ## Steps

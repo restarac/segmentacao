@@ -17,15 +17,18 @@ class SegmentationClausesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create segmentation_clause" do
     assert_difference('SegmentationClause.count') do
-      post segmentation_clauses_url, params: { segmentation_clause: { field_name: @segmentation_clause.field_name, field_value: @segmentation_clause.field_value, segmentation_filter_id: @segmentation_clause.segmentation_filter_id, segmentation_id: @segmentation_clause.segmentation_id } }
+      post segmentation_clauses_url, params: { segmentation_clause: { compare_field: @segmentation_clause.compare_field, compare_value: @segmentation_clause.compare_value, segmentation_filter_id: @segmentation_clause.segmentation_filter_id, segmentation_id: @segmentation_clause.segmentation_id } }
     end
 
     assert_redirected_to segmentation_clause_url(SegmentationClause.last)
   end
 
-  test "should show segmentation_clause" do
-    get segmentation_clause_url(@segmentation_clause)
-    assert_response :success
+  test "shouldnt show segmentation_clause" do
+    begin 
+      get segmentation_clause_url(@segmentation_clause)
+    rescue ActionController::RoutingError => error
+      assert error.message.start_with? "No route matches"
+    end
   end
 
   test "should get edit" do
@@ -34,7 +37,12 @@ class SegmentationClausesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update segmentation_clause" do
-    patch segmentation_clause_url(@segmentation_clause), params: { segmentation_clause: { field_name: @segmentation_clause.field_name, field_value: @segmentation_clause.field_value, segmentation_filter_id: @segmentation_clause.segmentation_filter_id, segmentation_id: @segmentation_clause.segmentation_id } }
+    patch segmentation_clause_url(@segmentation_clause), params: { segmentation_clause: { compare_field: @segmentation_clause.compare_field, compare_value: @segmentation_clause.compare_value, segmentation_filter_id: @segmentation_clause.segmentation_filter_id, segmentation_id: @segmentation_clause.segmentation_id } }
+    assert_redirected_to segmentation_clause_url(@segmentation_clause)
+  end
+
+  test "should update and call NEW segmentation_clause" do
+    patch segmentation_clause_url(@segmentation_clause), params: { segmentation_clause: { compare_field: @segmentation_clause.compare_field, compare_value: @segmentation_clause.compare_value, segmentation_filter_id: @segmentation_clause.segmentation_filter_id, segmentation_id: @segmentation_clause.segmentation_id } }
     assert_redirected_to segmentation_clause_url(@segmentation_clause)
   end
 

@@ -71,7 +71,7 @@ class ContactsController < ApplicationController
         if params[:save_and_add].nil?
           redirect_to @contact, notice: notice
         else
-          redirect_to new_contact_path(@contact), notice: notice
+          redirect_to new_contact_path, notice: notice
         end
     end
 end

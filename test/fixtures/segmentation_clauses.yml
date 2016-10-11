@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  field_name: MyString
-  field_value: MyString
+  compare_field: age
+  compare_value: 20
   segmentation: one
   segmentation_filter: one
 
 two:
-  field_name: MyString
-  field_value: MyString
+  compare_field: email
+  compare_value: .com
   segmentation: two
   segmentation_filter: two

@@ -1,0 +1,24 @@
+<%= form_for(segmentation) do |f| %>
+
+  <% if segmentation.errors.any? %>
+    <div class="alert alert-danger">
+      <p class="lead">Correct the folowing <%= pluralize(segmentation.errors.count, "error") %>:</p>
+
+      <ul>
+        <% segmentation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= link_to '<- Back to list', segmentations_path, {class: "btn btn btn-info", role: "button"} %>
+    <%= yield %>
+  </div>
+<% end %>

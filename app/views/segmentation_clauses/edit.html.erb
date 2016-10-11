@@ -1,3 +1,11 @@
-<h1>Editing Segmentation Clause</h1>
+<h1>"<%= @segmentation_clause.segmentation_name %>" Clauses</h1>
 
-<%= render 'form', segmentation_clause: @segmentation_clause, segmentation_other_clauses: @segmentation_other_clauses, form_url: segmentation_clause_path %>
+<%= render 'form',
+    segmentation_clause: @segmentation_clause,
+    filters: @filters,
+    form_method: "patch" do %>
+    <%= submit_tag 'Update', class: "btn btn-info" %>
+    <%= link_to 'New', new_segmentation_clause_path(@segmentation_clause.segmentation), {class: "btn btn btn-success", role: "button"}  %>
+<% end %>
+
+ <%= render 'list', segmentation_other_clauses: @segmentation_other_clauses %>

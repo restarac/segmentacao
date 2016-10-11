@@ -1,24 +1,29 @@
 class SegmentationClausesController < ApplicationController
   before_action :find_clause, only: [:update, :edit, :destroy]
-  before_action :new_clause, only: [:new, :create]
-  before_action :fill_fields, only: [:new, :edit]
-
-  def show
-  end
 
   def new
+    @segmentation_clause = SegmentationClause.new
+    @segmentation_clause.segmentation = Segmentation.find(params[:segmentation_id])
+    fill_fields
   end
 
   def edit
+    fill_fields
   end
 
   def create
+    @segmentation_clause = SegmentationClause.new(segmentation_clause_params)
+    @segmentation_clause.segmentation = Segmentation.find(params[:segmentation_id])
+
     respond_to do |format|
       if @segmentation_clause.save
-        format.html { redirect_to new_segmentation_clause_path, notice: 'Segmentation clause was successfully created.' }
+        format.html { redirect_to new_segmentation_clause_path(@segmentation_clause.segmentation), notice: 'Segmentation clause was successfully created.' }
         format.json { render :show, status: :created, location: @segmentation_clause }
       else
-        format.html { render :new }
+        format.html {
+          fill_fields
+          render :new 
+        }
         format.json { render json: @segmentation_clause.errors, status: :unprocessable_entity }
       end
     end
@@ -27,10 +32,13 @@ class SegmentationClausesController < ApplicationController
   def update
     respond_to do |format|
       if @segmentation_clause.update(segmentation_clause_params)
-        format.html { redirect_to new_segmentation_clause_path, notice: 'Segmentation clause was successfully updated.' }
+        format.html { redirect_to new_segmentation_clause_path(@segmentation_clause.segmentation), notice: 'Segmentation clause was successfully updated.' }
         format.json { render :show, status: :ok, location: @segmentation_clause }
       else
-        format.html { render :edit }
+        format.html {
+          fill_fields
+          render :edit
+        }
         format.json { render json: @segmentation_clause.errors, status: :unprocessable_entity }
       end
     end
@@ -39,7 +47,7 @@ class SegmentationClausesController < ApplicationController
   def destroy
     @segmentation_clause.destroy
     respond_to do |format|
-      format.html { redirect_to new_segmentation_clause_path, notice: 'Segmentation clause was successfully destroyed.' }
+      format.html { redirect_to new_segmentation_clause_path(@segmentation_clause.segmentation), notice: 'Segmentation clause was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -50,18 +58,13 @@ class SegmentationClausesController < ApplicationController
       @segmentation_clause = SegmentationClause.find(params[:id])
     end
 
-    def new_clause
-      @segmentation_clause = SegmentationClause.new
-      @segmentation_clause.segmentation = Segmentation.find(params[:segmentation_id])
-    end    
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def segmentation_clause_params
       params.require(:segmentation_clause).permit(:compare_field, :compare_value, :segmentation_id, :segmentation_filter_id)
     end
 
     def fill_fields
-      @segmentation_other_clauses = @segmentation_clause.segmentation.segmentation_clauses
+      @segmentation_other_clauses = SegmentationClause.where("segmentation_id = ?", params[:segmentation_id])
       @filters = NumberSegmentationFilter.all.collect { |number| ["Number - #{number.name}", number.id] }
       @filters += TextSegmentationFilter.all.collect { |text| ["Text - #{text.name}", text.id] }
     end

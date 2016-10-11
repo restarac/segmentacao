@@ -8,8 +8,12 @@ class SegmentationClause < ApplicationRecord
         segmentation.name
     end
 
+    def formated_value
+        segmentation_filter.treat_value compare_value
+    end
+
     def unsecure_where
-        mount_where.gsub! "\?", compare_value
+        mount_where.gsub! '?', formated_value
     end
 
     def readable_where

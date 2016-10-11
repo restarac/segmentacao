@@ -17,5 +17,9 @@ class NumberSegmentationFilter < SegmentationFilter
         end
         "#{field} #{symbol} ?"
     end
+    
+    def treat_value value
+        value
+    end
 
 end

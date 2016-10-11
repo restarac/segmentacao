@@ -1,7 +1,7 @@
 <%= form_for(contact) do |f| %>
   <% if contact.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+    <div class="alert alert-danger">
+      <p class="lead">Correct the folowing <%= pluralize(contact.errors.count, "error") %>:</h2>
 
       <ul>
       <% contact.errors.full_messages.each do |message| %>
@@ -11,33 +11,33 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :email %>
-    <%= f.email_field :email %>
+    <%= f.email_field :email, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :age %>
-    <%= f.number_field :age %>
+    <%= f.number_field :age, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :state %>
-    <%= f.collection_select(:state_id, State.all, :id, :name) %>
+    <%= f.collection_select(:state_id, State.all, :id, :name, {}, {class: "form-control"}) %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :occupation %>
-    <%= f.text_field :occupation %>
+    <%= f.text_field :occupation, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= submit_tag 'Save' %>
-    <%= submit_tag 'Save and create another', name: 'save_and_add' %>
+    <%= link_to '<- Back to list', contacts_path, {class: "btn btn btn-info", role: "button"}  %>
+    <%= submit_tag 'Save and create another', name: 'save_and_add', class: "btn btn-success" %>
   </div>
 <% end %>

@@ -5,38 +5,41 @@
 <p>
     This filter is using the folowing conditions
     <ul>
-        <% for clause in @segmentation.segmentation_clause %>
+        <% for clause in @segmentation.segmentation_clauses %>
             <li> <%= clause.unsecure_where %></li>
         <% end %>
     </ul>
 <p>
 
+<div class="actions">
+    <%= link_to 'Edit Filter', edit_segmentation_path(@segmentation), {class: "btn btn btn-info", role: "button"}  %>
+    <%= link_to 'Reload', segmentation_workspace_run_path(@segmentation), {class: "btn btn btn-info", role: "button"}  %>
 <div>
-    <%= link_to 'Edit Filter', segmentation_workspace_run_path(@segmentation) %>
-    <%= link_to 'Reload', segmentation_workspace_run_path(@segmentation) %>
-<div>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Age</th>
-      <th>State</th>
-      <th>Occupation</th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @contacts.each do |contact| %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= contact.name %></td>
-        <td><%= contact.email %></td>
-        <td><%= contact.age %></td>
-        <td><%= contact.state.initials %></td>
-        <td><%= contact.occupation %></td>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>State</th>
+        <th>Occupation</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @contacts.each do |contact| %>
+        <tr>
+          <td><%= contact.name %></td>
+          <td><%= contact.email %></td>
+          <td><%= contact.age %></td>
+          <td><%= contact.state.initials %></td>
+          <td><%= contact.occupation %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>

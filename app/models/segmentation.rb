@@ -1,4 +1,6 @@
 class Segmentation < ApplicationRecord
+    validates :compare_value, presence: :true
+    
     has_many :segmentation_clause, dependent: :destroy
 
     def conditions

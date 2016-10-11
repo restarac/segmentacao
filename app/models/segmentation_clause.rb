@@ -1,4 +1,5 @@
 class SegmentationClause < ApplicationRecord
+    validates :compare_value, :compare_field, :segmentation, :segmentation_filter, presence: true
 
     belongs_to :segmentation, foreign_key: "segmentation_id"
     belongs_to :segmentation_filter, foreign_key: "segmentation_filter_id"
